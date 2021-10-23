@@ -25,6 +25,6 @@ jobs:
           export AWS_ACCESS_KEY_ID=${{env.AWS_ACCESS_KEY_ID}}
           export AWS_SECRET_ACCESS_KEY=${{env.AWS_SECRET_ACCESS_KEY}}
           export AWS_DEFAULT_REGION=${{env.AWS_DEFAULT_REGION}}
-          sudo -u ubuntu aws s3 cp src/ s3:${{env.AWS_CODE_BUCKET}}/ --recursive --sse
-          sudo -u ubuntu aws s3 cp tsconfig.json s3:${{env.AWS_CODE_BUCKET}}/ --sse
-          sudo -u ubuntu aws s3 cp package.json s3:${{env.AWS_CODE_BUCKET}}/ --sse
+          aws s3 cp src/ s3:${{env.AWS_CODE_BUCKET}}/ --recursive --sse
+          aws s3 cp tsconfig.json s3:${{env.AWS_CODE_BUCKET}}/ --sse
+          aws s3 cp package.json s3:${{env.AWS_CODE_BUCKET}}/ --sse
