@@ -1,4 +1,4 @@
-name: Terraform AWS
+name: Deploy Code to S3
 
 on:
   push:
@@ -34,4 +34,3 @@ jobs:
           sudo -u ubuntu aws s3 cp src/ s3:${{env.AWS_CODE_BUCKET}}/ --recursive --sse
           sudo -u ubuntu aws s3 cp tsconfig.json s3:${{env.AWS_CODE_BUCKET}}/ --sse
           sudo -u ubuntu aws s3 cp package.json s3:${{env.AWS_CODE_BUCKET}}/ --sse
-          
