@@ -30,3 +30,4 @@ jobs:
           aws s3 cp src/ s3://${{env.AWS_CODE_BUCKET}}/app/src/ --recursive --sse
           aws s3 cp tsconfig.json s3://${{env.AWS_CODE_BUCKET}}/app/ --sse
           aws s3 cp package.json s3://${{env.AWS_CODE_BUCKET}}/app/ --sse
+          aws s3 cp package-lock.json s3://${{env.AWS_CODE_BUCKET}}/app/ --sse
