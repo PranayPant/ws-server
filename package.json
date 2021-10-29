@@ -7,6 +7,7 @@
     "build": "./node_modules/.bin/tsc",
     "server": "node ./dist/index.js",
     "start": "npm run build && npm run server",
+    "clean-start": "npm clean-install && npm start",
     "dev": "ts-node-dev ./src/index.ts"
   },
   "author": "",
