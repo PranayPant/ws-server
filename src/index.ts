@@ -1,8 +1,15 @@
-import express, {Application} from 'express';
+import express, {Application, Request, Response} from 'express';
 import http from 'http';
 import WebSocket, {AddressInfo} from 'ws';
 
 const app:Application = express();
+
+// health check route
+app.get('/', (req: Request, res: Response ) =>{
+    res.status(200);
+    res.send('Health check pass');
+    res.end();
+})
 
 //initialize a simple http server
 const server = http.createServer(app);
