@@ -38,6 +38,7 @@ jobs:
       - name: Setup Infra Repo
         run: |
           git clone https://${{secrets.REPO_ACCESS_TOKEN}}:x-oauth-basic@github.com/PranayPant/terraform-ci-cd.git
+          cd terraform-ci-cd
           npm run creds
           export TF_CLI_CONFIG_FILE=${{env.config_path}}
 
