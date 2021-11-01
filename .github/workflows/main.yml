@@ -41,7 +41,7 @@ jobs:
           npm run creds
           
       - name: Init Provisioning
-        run: export TF_CLI_CONFIG_FILE=./terraform-ci-cd/terraform/terraform.rc && terraform init
+        run: export TF_CLI_CONFIG_FILE=terraform.rc && terraform init
         working-directory: ${{env.cwd}}
 
       - name: Plan Provisioning
