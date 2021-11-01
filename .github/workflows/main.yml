@@ -10,6 +10,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      cwd: ./terraform-ci-cd/terraform
     strategy:
       matrix:
         node-version: [14.x]
@@ -35,11 +37,15 @@ jobs:
       - name: Init Terraform Provisioning
         run: |
           git clone https://${{secrets.REPO_ACCESS_TOKEN}}:x-oauth-basic@github.com/PranayPant/terraform-ci-cd.git
-          cd terraform-ci-cd/terraform
-          terraform init
+          
+      - name: Init Provisioning
+        run: terraform init
+        working-directory: ${{env.cwd}}
 
       - name: Plan Provisioning
         run: terraform plan
+        working-directory: ${{env.cwd}}
 
       - name: Apply Provisioning
         run: terraform apply -auto-approve
+        working-directory: ${{env.cwd}}
