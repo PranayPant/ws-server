@@ -12,6 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       cwd: ./terraform-ci-cd/terraform
+      config_path: ./terraform-ci-cd/terraform/terraform.rc
     strategy:
       matrix:
         node-version: [14.x]
@@ -34,10 +35,12 @@ jobs:
         with:
           cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
 
-      - name: Init Terraform Provisioning
+      - name: Setup Infra Repo
         run: |
           git clone https://${{secrets.REPO_ACCESS_TOKEN}}:x-oauth-basic@github.com/PranayPant/terraform-ci-cd.git
-          
+          npm run creds
+          export TF_CLI_CONFIG_FILE=${{env.config_path}}
+
       - name: Init Provisioning
         run: terraform init
         working-directory: ${{env.cwd}}
