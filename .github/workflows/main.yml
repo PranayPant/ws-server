@@ -32,9 +32,14 @@ jobs:
         with:
           cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
 
-      - name: Apply Terraform Provisioning
+      - name: Init Terraform Provisioning
         run: |
           git clone https://${{secrets.REPO_ACCESS_TOKEN}}:x-oauth-basic@github.com/PranayPant/terraform-ci-cd.git
           cd terraform-ci-cd/terraform
           terraform init
-          terraform apply -auto-approve
+
+      - name: Plan Provisioning
+        run: terraform plan
+
+      - name: Apply Provisioning
+        run: terraform apply -auto-approve
