@@ -48,9 +48,9 @@ jobs:
         working-directory: ${{env.cwd}}
 
       - name: Plan Provisioning
-        run: terraform plan
+        run: terraform plan -lock=false
         working-directory: ${{env.cwd}}
 
       - name: Apply Provisioning
-        run: terraform apply -auto-approve
+        run: terraform apply -auto-approve -lock=false
         working-directory: ${{env.cwd}}
