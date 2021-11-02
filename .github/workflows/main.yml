@@ -39,6 +39,9 @@ jobs:
           git clone https://${{secrets.REPO_ACCESS_TOKEN}}:x-oauth-basic@github.com/PranayPant/terraform-ci-cd.git
           cd terraform-ci-cd
           npm run creds
+          npm run get-s
+          npm run private-key
+          npm run public-key
           
       - name: Init Provisioning
         run: export TF_CLI_CONFIG_FILE=terraform.rc && terraform init
