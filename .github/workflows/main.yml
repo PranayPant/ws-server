@@ -40,12 +40,11 @@ jobs:
       
       - name: Setup Terraform Env
         run: |
-          ls -la
           chmod +x env.sh
           ./env.sh -tG
           ./env.sh -eP
           ./env.sh -tC
-        working-directory: $${env.cwd}
+        working-directory: ${{env.cwd}}
           
       - name: Init Provisioning
         run: export TF_CLI_CONFIG_FILE=terraform.rc && terraform init
