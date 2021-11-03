@@ -34,14 +34,17 @@ jobs:
         with:
           cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
 
-      - name: Setup Infra Repo
+      - name: Clone Infra Repo
         run: |
           git clone https://${{secrets.REPO_ACCESS_TOKEN}}:x-oauth-basic@github.com/PranayPant/ws-server-tf.git
-          cd ws-server-tf
+      
+      - name: Setup Terraform Env
+        run: |
           chmod +x env.sh
           ./env.sh -tG
           ./env.sh -eP
           ./env.sh -tC
+        working-directory: $${env.cwd}
           
       - name: Init Provisioning
         run: export TF_CLI_CONFIG_FILE=terraform.rc && terraform init
