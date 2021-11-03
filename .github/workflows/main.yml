@@ -54,6 +54,10 @@ jobs:
         run: terraform plan -lock=false
         working-directory: ${{env.cwd}}
 
+      - name: Delete Current Autoscaling Group
+        run: terraform apply -auto-approve -destroy -lock=false -target=module.asg
+        working-directory: ${{env.cwd}}
+
       - name: Apply Provisioning
         run: terraform apply -auto-approve -lock=false
         working-directory: ${{env.cwd}}
