@@ -40,6 +40,7 @@ jobs:
       
       - name: Setup Terraform Env
         run: |
+          ls -la
           chmod +x env.sh
           ./env.sh -tG
           ./env.sh -eP
