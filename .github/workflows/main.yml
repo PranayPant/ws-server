@@ -11,7 +11,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      cwd: ./terraform-ci-cd/terraform
+      cwd: ./ws-server-tf
       AWS_ACCESS_KEY_ID: ${{secrets.AWS_ACCESS_KEY_ID}}
       AWS_SECRET_ACCESS_KEY: ${{secrets.AWS_SECRET_ACCESS_KEY}}
       AWS_DEFAULT_REGION: ${{secrets.AWS_DEFAULT_REGION}}
@@ -36,12 +36,12 @@ jobs:
 
       - name: Setup Infra Repo
         run: |
-          git clone https://${{secrets.REPO_ACCESS_TOKEN}}:x-oauth-basic@github.com/PranayPant/terraform-ci-cd.git
-          cd terraform-ci-cd
-          npm run creds
-          npm run get-s
-          npm run private-key
-          npm run public-key
+          git clone https://${{secrets.REPO_ACCESS_TOKEN}}:x-oauth-basic@github.com/PranayPant/ws-server-tf.git
+          cd ws-server-tf
+          chmod +x env.sh
+          ./env.sh -tG
+          ./env.sh -eP
+          ./env.sh -tC
           
       - name: Init Provisioning
         run: export TF_CLI_CONFIG_FILE=terraform.rc && terraform init
