@@ -3,8 +3,9 @@ export type Payload = {
 }
 
 export type Header = {
-    userId: string;
-    connectionId: string;
+    user_id: string;
+    connection_id: string;
+    api_key: string;
 }
 
 export type Request = {
